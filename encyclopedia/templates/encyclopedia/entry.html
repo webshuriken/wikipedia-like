@@ -1,3 +1,9 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+  {{ entry_title }}
+{% endblock %}
+
 {% block body %}
   {% for html_tag in html_entry %}
     {{ html_tag | safe }}

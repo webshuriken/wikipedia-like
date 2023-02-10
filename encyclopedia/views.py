@@ -9,12 +9,16 @@ def index(request):
         "entries": util.list_entries()
     })
 
-
 def entry(request, entry):
     mk_doc = util.get_entry(entry)
-    if (mk_doc == 'NONE'):
-        return HttpResponseRedirect('PAGE WAS NOT FOUND')
+    print(f'ENTRY FOUND: {type(mk_doc)}')
+    if (mk_doc == None):
+        return render(request, 'encyclopedia/404-entry.html')
     else:
         return render(request, "encyclopedia/entry.html", {
+            "entry_title": entry,
             "html_entry": mk2html.parse_file(mk_doc)
         })
+
+def entry_not_found(request):
+    return render(request, "encyclopedia/404-entry.html")

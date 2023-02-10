@@ -1,33 +1,7 @@
 from os.path import exists
+from os import linesep
 import re
 
-
-# @description get the markdown file from /docs folder
-# @params title {string} the name of the markdown document to convert
-# @returns {string} the markdown file
-def get_md_file(title):
-  file_info = False
-
-  # check for popular extension first .md then .markdown
-  ext_found = 'md' if exists(f'docs/{title}.md') else 'markdown' if exists(f'docs/{title}.markdown') else False
-  
-  # lets read the file or let the user down
-  if ext_found != False:
-    try:
-      f = open(f'docs/{title}.{ext_found}')
-      try:
-        file_info = f.read()
-      except:
-        print("Was unable to read the file")
-      finally:
-        f.close()
-    except:
-      print("Something not right when opening the markdown file")
-  else:
-    raise Exception('File Not Found, please make sure it exists')
-
-  # give file back as string
-  return file_info
 
 # @description check for header in string
 # @params file_line {string} the string to check
@@ -120,11 +94,13 @@ def get_lists(all_file_lines):
 
   return list_found
 
-# @description check the list marker was used properly 
+# @description check the list marker was used properly
 # @params match {re_class} to check matched text
 # @params list_level {dictionary} so we know what level we are in during the list creation
 # @params list_type {string} start | current | previous | nested
 # @returns {boolean} True if the marker is valid and Flase if it is not
+
+
 def valid_list_marker(match, list_levels, current_level, list_type):
   marker_is_valid = False
   matched_tabs = match.group().count('\t')
@@ -172,7 +148,7 @@ def get_paragraphs(all_file_lines):
     # exit loop if there are not more items in the list
     if len(all_file_lines) == 0:
       break
-  
+
   # remove any trailing spaces and join the array items
   html_p[1] = html_p[1].strip()
   html_p = ''.join(html_p)
@@ -185,6 +161,8 @@ def get_paragraphs(all_file_lines):
 # @description filter text to find boldness and/or links
 # @params text {string}
 # @returns {string} the string with a ny link of bold tags
+
+
 def text_filter(text):
   html_text = get_boldness(text)
   html_text = get_links(html_text)
@@ -193,6 +171,8 @@ def text_filter(text):
 # @description replace all matches of boldness with its html tags
 # @params text {string}
 # @returns {string} the string with html tags
+
+
 def get_boldness(text):
   match = re.finditer(r'[*_]{2}(\w\s?)+\w[*_]{2}', text)
   html_bold = ''
@@ -214,6 +194,8 @@ def get_boldness(text):
 # @description replace all matched links with their html tags
 # @params text {string}
 # @returns {string} the string with html links
+
+
 def get_links(text):
   match = re.finditer(r'(\[[^\s]+\])(\([^\s]+\))', text)
   html_link = ''
@@ -246,8 +228,8 @@ def parse_file(file_name):
     # to store the entire HTML created from the markdown file
     html_list = []
 
-    # split file into lines
-    md_file_lines = re.split(r'[\n\r]', file_name)
+    # use built-in method to split line so we dont worry about the OS use of EOF
+    md_file_lines = file_name.splitlines()
 
     while len(md_file_lines) > 0:
       # check for empty item in array
@@ -275,7 +257,7 @@ def parse_file(file_name):
         html_list.append(paragraph[1])
         md_file_lines = paragraph[2]
         continue
-    
+
     # return the HTML
     return html_list
   except Exception as err:

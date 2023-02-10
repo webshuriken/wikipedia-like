@@ -1,0 +1,13 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+  {{ entry_title }}
+{% endblock %}
+
+{% block body %}
+  {% for html_tag in html_entry %}
+    {{ html_tag | safe }}
+    {% empty %}
+    <p>Seem this entry exists but has no content...</p>
+  {% endfor %}
+{% endblock %}

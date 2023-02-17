@@ -10,6 +10,15 @@ class CreateNewPage(forms.Form):
     title = forms.CharField(label="Title", strip=True)
     content = forms.CharField(widget=forms.Textarea, label="Content", strip=True)
 
+    def clean_title(self):
+        """
+        To pass the cleaning, the title name must not exist.
+        """
+        data = self.cleaned_data["title"]
+        if util.get_entry(data) != None:
+            raise ValidationError(f"Entry with the name '{data}' already exists")
+        return data
+
 def index(request):
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries()

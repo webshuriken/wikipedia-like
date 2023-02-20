@@ -7,7 +7,10 @@ from django.urls import reverse
 from . import util, mk2html
 
 class CreateNewPage(forms.Form):
-    title = forms.CharField(label="Title", strip=True)
+    """
+    Form used in the new page view
+    """
+    title = forms.CharField(label="Title", max_length=80, strip=True)
     content = forms.CharField(widget=forms.Textarea, label="Content", strip=True)
 
     def clean_title(self):
@@ -18,6 +21,14 @@ class CreateNewPage(forms.Form):
         if util.get_entry(data) != None:
             raise ValidationError(f"Entry with the name '{data}' already exists")
         return data
+
+class EditPage(forms.Form):
+    """
+    Form used when editing a page, the title is readonly
+    We will only allow users to change the main content and not the title.
+    """
+    title = forms.CharField(widget=forms.TextInput(attrs={'readonly':'readonly'}), label="Title")
+    content = forms.CharField(widget=forms.Textarea, label="Content", strip=True)
 
 def index(request):
     return render(request, "encyclopedia/index.html", {
@@ -35,6 +46,9 @@ def entry(request, entry):
         })
 
 def entry_not_found(request):
+    """
+    This template is for non existent entry
+    """
     return render(request, "encyclopedia/404-entry.html")
 
 def new_page(request):
@@ -60,4 +74,30 @@ def new_page(request):
     # fresh request, fresh form
     return render(request, "encyclopedia/new-page.html", {
         "form": CreateNewPage()
+    })
+
+def edit_page(request, entry):
+    mk_doc = util.get_entry(entry)
+    # this check will stop a user from abusing the edit form by manually going to the 
+    # url and typing in any text as parameter, adding content to the form and saving it
+    # as if they were creating a new entry.
+    if mk_doc == None:
+        return render(request, "encyclopedia/404-entry.html")
+
+    # split the entry to separate the main title from the content
+    doc = mk_doc.splitlines(True)
+    # remove the '# ' before the title and strip trailing newlines
+    title = doc[0][2:].rstrip("\r\n")
+    # this is the only way I can get it to keep the line breaks when joining the list
+    content = ""
+    for i in range(2, len(doc)):
+        content += doc[i]
+
+    # create editing form and setup initial values
+    form = EditPage()
+    form["title"].initial = title
+    form["content"].initial = content
+
+    return render(request, "encyclopedia/edit-page.html", {
+        "form": form
     })

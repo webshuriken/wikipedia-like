@@ -27,7 +27,7 @@ class EditPage(forms.Form):
     Form used when editing a page, the title is readonly.
     We will only allow users to change the main content and not the title.
     """
-    title = forms.CharField(widget=forms.TextInput(attrs={'readonly':'readonly'}), label="Title")
+    title = forms.CharField(widget=forms.HiddenInput(attrs={'name': 'entry-title', 'id': 'entry-title'}))
     content = forms.CharField(widget=forms.Textarea, label="Content", strip=True)
 
 def index(request):
@@ -79,7 +79,6 @@ def edit_page(request, entry):
     # let grab that form POST
     if request.method == 'POST':
         form = EditPage(request.POST)
-        print(f"LET GRAB THAT POST")
         if form.is_valid():
             title = form.cleaned_data["title"]
             content = form.cleaned_data["content"]

@@ -24,7 +24,7 @@ class CreateNewPage(forms.Form):
 
 class EditPage(forms.Form):
     """
-    Form used when editing a page, the title is readonly
+    Form used when editing a page, the title is readonly.
     We will only allow users to change the main content and not the title.
     """
     title = forms.CharField(widget=forms.TextInput(attrs={'readonly':'readonly'}), label="Title")
@@ -65,7 +65,6 @@ def new_page(request):
             # save the new entry to file
             util.save_entry(title, content)
             return HttpResponseRedirect(reverse(f"encyclopedia:entry", args=[title]))
-
         else:
             return render(request, "encyclopedia/new-page.html", {
                 "form": form
@@ -77,10 +76,27 @@ def new_page(request):
     })
 
 def edit_page(request, entry):
-    mk_doc = util.get_entry(entry)
+    # let grab that form POST
+    if request.method == 'POST':
+        form = EditPage(request.POST)
+        print(f"LET GRAB THAT POST")
+        if form.is_valid():
+            title = form.cleaned_data["title"]
+            content = form.cleaned_data["content"]
+            # prepend the title to the content
+            content = f"# {title}\n\n{content}"
+            # save the new entry to file
+            util.save_entry(title, content)
+            return HttpResponseRedirect(reverse(f"encyclopedia:entry", args=[title]))
+        else:
+            return render(request, "encyclopedia/new-page.html", {
+                "form": form
+            })
+
     # this check will stop a user from abusing the edit form by manually going to the 
     # url and typing in any text as parameter, adding content to the form and saving it
     # as if they were creating a new entry.
+    mk_doc = util.get_entry(entry)
     if mk_doc == None:
         return render(request, "encyclopedia/404-entry.html")
 
@@ -99,5 +115,6 @@ def edit_page(request, entry):
     form["content"].initial = content
 
     return render(request, "encyclopedia/edit-page.html", {
-        "form": form
+        "form": form,
+        "title": title
     })

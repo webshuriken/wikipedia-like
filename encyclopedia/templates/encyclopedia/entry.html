@@ -4,10 +4,18 @@
   {{ entry_title }}
 {% endblock %}
 
+<section>
 {% block body %}
-  {% for html_tag in html_entry %}
+  <header>
+    <h1>{{ entry_title }}</h1>
+    <a href="{% url 'encyclopedia:edit-page' entry_title %}">edit page</a>
+  </header>
+  <div class="entry-body">
+    {% for html_tag in html_entry %}
     {{ html_tag | safe }}
     {% empty %}
     <p>Seem this entry exists but has no content...</p>
-  {% endfor %}
+    {% endfor %}
+  </div>
 {% endblock %}
+</section>

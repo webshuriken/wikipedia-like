@@ -40,9 +40,13 @@ def entry(request, entry):
     if (mk_doc == None):
         return render(request, "encyclopedia/404-entry.html")
     else:
+        # TODO: remove the title and empty line below it and only send the content
+        html_doc = mk2html.parse_file(mk_doc)
+        # lets remove the page title as we only need the body
+        html_doc.pop(0)
         return render(request, "encyclopedia/entry.html", {
             "entry_title": entry,
-            "html_entry": mk2html.parse_file(mk_doc)
+            "html_entry": html_doc
         })
 
 def entry_not_found(request):

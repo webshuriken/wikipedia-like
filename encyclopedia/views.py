@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django import forms
 from django.urls import reverse
+from random import randrange
 
 from . import util, mk2html
 
@@ -40,7 +41,6 @@ def entry(request, entry):
     if (mk_doc == None):
         return render(request, "encyclopedia/404-entry.html")
     else:
-        # TODO: remove the title and empty line below it and only send the content
         html_doc = mk2html.parse_file(mk_doc)
         # lets remove the page title as we only need the body
         html_doc.pop(0)
@@ -121,3 +121,13 @@ def edit_page(request, entry):
         "form": form,
         "title": title
     })
+
+def random(request):
+    """
+    loads a random entry
+    """
+    list = util.list_entries()
+    # lets get arandom name
+    entry_name = list[randrange(len(list))]
+    # lets retrieve and parse the entry
+    return HttpResponseRedirect(reverse(f"encyclopedia:entry", args=[entry_name]))

@@ -1,4 +1,6 @@
 {% load static %}
+{% load encyclopedia_tags %}
+
 
 <!DOCTYPE html>
 
@@ -12,9 +14,9 @@
         <div class="row">
             <div class="sidebar col-lg-2 col-md-3">
                 <h2>Wiki</h2>
-                <form>
-                    <input class="search" type="text" name="q" placeholder="Search Encyclopedia">
-                </form>
+                
+                {% entries_search_form %}
+
                 <div>
                     <a href="{% url 'encyclopedia:index' %}">Home</a>
                 </div>

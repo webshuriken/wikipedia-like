@@ -1,0 +1,4 @@
+<form action="{% url 'encyclopedia:search_results' %}" method="post">
+  {% csrf_token %}
+  {{ the_search_form }}
+</form>

@@ -4,8 +4,10 @@ from django.http import HttpResponseRedirect
 from django import forms
 from django.urls import reverse
 from random import randrange
+import re
 
 from . import util, mk2html
+from .templatetags.encyclopedia_tags import SearchForm
 
 class CreateNewPage(forms.Form):
     """
@@ -30,6 +32,7 @@ class EditPage(forms.Form):
     """
     title = forms.CharField(widget=forms.HiddenInput(attrs={'name': 'entry-title', 'id': 'entry-title'}))
     content = forms.CharField(widget=forms.Textarea, label="Content", strip=True)
+
 
 def index(request):
     return render(request, "encyclopedia/index.html", {
@@ -131,3 +134,38 @@ def random(request):
     entry_name = list[randrange(len(list))]
     # lets retrieve and parse the entry
     return HttpResponseRedirect(reverse(f"encyclopedia:entry", args=[entry_name]))
+
+def search_results(request):
+    """
+    displays the results, if any, of a search for a wiki entry
+    """
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            search_query = form.cleaned_data["search_query"]
+            entries = util.list_entries()
+            # loop around the list of entries
+            entries_found = []
+            exact_match = False
+            for entry in entries:
+                if re.search(f'{search_query}', entry, re.IGNORECASE):
+                    # is it exact match?
+                    if len(search_query) == len(entry):
+                        exact_match = True
+                        # in case other partial matches were added, lets clear the entries found
+                        entries_found = []
+                        entries_found.append(entry)
+                        break
+                    entries_found.append(entry)
+            # now lets see what we have found
+            if len(entries_found) != 0:
+                if exact_match:
+                    return HttpResponseRedirect(reverse(f"encyclopedia:entry", args=[entries_found[0]]))
+  
+            # handle both part match and no match results
+            return render(request, "encyclopedia/search_results.html", {
+                "search_query": search_query,
+                "search_results": entries_found
+            })
+    # anyone trying to access this page directly will be sent back home
+    return HttpResponseRedirect(reverse(f"encyclopedia:index"))

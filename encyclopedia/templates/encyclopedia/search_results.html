@@ -1,0 +1,20 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+  Seach results
+{% endblock %}
+
+<section>
+  <header>
+    <h1>Search results for: {{ search_text }}</h1>
+  </header>
+  <div>
+    <ul>
+      {% for result in search %}
+        <li>{{ result }}</li>
+        {% empty %}
+        <li>No results found matching your search text.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

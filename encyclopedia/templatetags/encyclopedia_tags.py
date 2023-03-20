@@ -9,7 +9,7 @@ class SearchForm(forms.Form):
     search_query = forms.CharField(
         label=False,
         widget=forms.TextInput(
-            attrs={'class': 'search', 'placeholder': 'Search Encyclopedia', 'aria-label': 'search encyclopedia'}), 
+            attrs={'class': 'form-control search', 'placeholder': 'Search Encyclopedia', 'aria-label': 'search encyclopedia'}), 
         max_length=80, 
         strip=True)
 

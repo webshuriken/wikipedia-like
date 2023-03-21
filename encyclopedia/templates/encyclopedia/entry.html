@@ -4,13 +4,13 @@
   {{ entry_title }}
 {% endblock %}
 
-<section>
+<section class="row wiki-entry">
 {% block body %}
-  <header>
-    <h1>{{ entry_title }}</h1>
+  <header class="col-12 p-2 wiki-entry__header">
+    <h1 class="h2 d-inline-block">{{ entry_title }}</h1>
     <a href="{% url 'encyclopedia:edit-page' entry_title %}">edit page</a>
   </header>
-  <div class="entry-body">
+  <div class="col-12 px-2 py-3 wiki-entry__body">
     {% for html_tag in html_entry %}
     {{ html_tag | safe }}
     {% empty %}

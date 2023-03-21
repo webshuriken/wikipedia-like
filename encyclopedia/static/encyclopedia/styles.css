@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: white;
+    background-color: var(--wk-white);
 }
 
 :root {
@@ -11,6 +11,7 @@ body {
     --wk-lighter-powder-blue: #CAD6E2;
     --wk-platinum: #D8DBE2;
     --wk-charcoal: #373F51;
+    --wk-white: #fff;
     font-size: 18px;
 }
 
@@ -43,7 +44,7 @@ code {
     padding: .5rem 0;
     width: 180px;
     background: var(--wk-charcoal);
-    color: white;
+    color: var(--wk-white);
     box-shadow: 0 2px 8px var(--wk-charcoal);
     transition: transform .24s, background-color .24s, color .24s;
 }
@@ -87,4 +88,27 @@ code {
 }
 .wiki-list-all li:nth-child(odd) a:hover {
     background-color: var(--wk-powder-blue);
+}
+
+/* Entry layout */
+.wiki-entry {}
+
+.wiki-entry__header {
+    background-color: var(--wk-lighter-powder-blue);
+    color: var(--wk-melon);
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+.wiki-entry__header h1 {
+    text-shadow: 2px 2px 2px var(--wk-charcoal);
+}
+.wiki-entry__header a {
+    color: var(--wk-charcoal);
+    font-size: .7rem;
+}
+
+.wiki-entry__body {
+    background-color: var(--wk-lighter-melon);
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
 }

@@ -4,12 +4,11 @@ body {
 }
 
 :root {
-    --wk-moonstone: #0FA3B1;
-    --wk-beaver: #957964;
-    --wk-ecru: #C7AA74;
-    --wk-light-ecru: #F9F6F0;
-    --wk-rich-black: #0F1A20;
-    --wk-green: #2C6E49;
+    --wk-moonstone: #58A4B0;
+    --wk-melon: #DAA49A;
+    --wk-powder-blue: #A9BCD0;
+    --wk-platinum: #D8DBE2;
+    --wk-charcoal: #373F51;
     font-size: 18px;
 }
 
@@ -50,12 +49,11 @@ textarea {
 
 /* Further customisation */
 .wiki-navbar-wrapper {
-    background: var(--wk-ecru);
-    color: var(--wk-moonstone);
+    background: var(--wk-powder-blue);
 }
 
 .wiki-navbar-wrapper .offcanvas {
-    background: var(--wk-ecru);
+    background: var(--wk-powder-blue);
 }
 
 .wiki-navbar-wrapper .navbar-nav {
@@ -65,11 +63,12 @@ textarea {
 .wiki-navbar-wrapper .navbar-nav .nav-link,
 .wiki-navbar-wrapper .navbar-nav .nav-link.active {
     border-radius: 8px;
+    border: 1px solid white;
     padding: .5rem 0;
     width: 180px;
-    background: var(--wk-green);
-    color: var(--wk-light-ecru);
-    box-shadow: 0 2px 8px var(--wk-beaver);
+    background: var(--wk-charcoal);
+    color: white;
+    box-shadow: 0 2px 8px var(--wk-charcoal);
     transition: transform .24s;
 }
 .wiki-navbar-wrapper .navbar-nav .nav-link:active {

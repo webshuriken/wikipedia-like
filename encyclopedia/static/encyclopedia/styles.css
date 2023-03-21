@@ -6,7 +6,9 @@ body {
 :root {
     --wk-moonstone: #58A4B0;
     --wk-melon: #DAA49A;
+    --wk-lighter-melon: #E9C9C3;
     --wk-powder-blue: #A9BCD0;
+    --wk-lighter-powder-blue: #CAD6E2;
     --wk-platinum: #D8DBE2;
     --wk-charcoal: #373F51;
     font-size: 18px;
@@ -48,8 +50,41 @@ code {
 .wiki-navbar-wrapper .navbar-nav .nav-link:active {
     transform: scale(.9);
 }
-.wiki-navbar-wrapper .navbar-nav .nav-link:hover,
-.wiki-navbar-wrapper .navbar-nav .nav-link:focus {
+.wiki-navbar-wrapper .navbar-nav .nav-link:hover {
     background-color: var(--wk-moonstone);
     color: var(--wk-charcoal);
+}
+
+/* Home page */
+.wiki-list-all {
+    border-radius: 4px;
+    overflow: hidden;
+}
+.wiki-list-all li a {
+    color: var(--wk-charcoal);
+}
+
+.wiki-list-all li:first-child {
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    overflow: hidden;
+}
+.wiki-list-all li:last-child {
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    overflow: hidden;
+}
+
+.wiki-list-all li:nth-child(even) a {
+    background-color: var(--wk-lighter-melon);
+}
+.wiki-list-all li:nth-child(even) a:hover {
+    background-color: var(--wk-melon)
+}
+
+.wiki-list-all li:nth-child(odd) a {
+    background-color: var(--wk-lighter-powder-blue);
+}
+.wiki-list-all li:nth-child(odd) a:hover {
+    background-color: var(--wk-powder-blue);
 }

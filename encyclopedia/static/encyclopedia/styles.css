@@ -63,6 +63,10 @@ code {
 }
 .wiki-list-all li a {
     color: var(--wk-charcoal);
+    transition: transform .24s;
+}
+.wiki-list-all li a:hover {
+    transform: translateX(16px)
 }
 
 .wiki-list-all li:first-child {

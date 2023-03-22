@@ -5,18 +5,21 @@
 {% endblock %}
 
 {% block body %}
-<section>
-  <header>
-    <h1>Search results for: {{ search_query }}</h1>
+<section class="row px-2">
+  <header class="col-12 p-2 wiki-header">
+    <h1 class="h2">Search results for:</h1>
+    <p class="text-center">{{ search_query }}</p>
   </header>
   <div>
-    <ul>
+    <ul class="col-12 px-2 py-2 wiki-list-all">
       {% for entry in search_results %}
         <li>
-          <a href="{% url 'encyclopedia:entry' entry %}">{{ entry }}</a>
+          <a href="{% url 'encyclopedia:entry' entry %}" class="d-block px-3 py-2">{{ entry }}</a>
         </li>
         {% empty %}
-        <li>No results found matching your search text.</li>
+        <li class="d-block px-3 py-2">
+          <span>No results found.</span>
+        </li>
       {% endfor %}
     </ul>
   </div>

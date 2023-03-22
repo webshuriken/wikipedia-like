@@ -71,6 +71,8 @@ code {
 /* Home page */
 .wiki-list-all {
     border-radius: 4px;
+}
+.wiki-list-all li {
     overflow: hidden;
 }
 .wiki-list-all li a {
@@ -83,13 +85,11 @@ code {
 
 .wiki-list-all li:first-child {
     border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
-    overflow: hidden;
+    border-top-left-radius: 8px;\
 }
 .wiki-list-all li:last-child {
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
-    overflow: hidden;
 }
 
 .wiki-list-all li:nth-child(even) a {

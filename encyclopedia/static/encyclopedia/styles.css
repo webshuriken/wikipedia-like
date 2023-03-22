@@ -21,12 +21,14 @@ code {
 
 .main {
     padding: 10px;
+    height: 100%;
 }
 
 
 /* Further customisation */
 .wiki-navbar-wrapper {
     background: var(--wk-powder-blue);
+    height: 65.25px;
 }
 
 .wiki-navbar-wrapper .offcanvas {
@@ -132,8 +134,8 @@ code {
     min-height: 50vh;
 }
 
-@media screen and (max-width: 767px) {
-    main {
-        height: calc(100vh - 65.25px);
+@media screen and (min-width: 768px) {
+    .wiki-navbar-wrapper {
+        height: 100%;
     }
 }

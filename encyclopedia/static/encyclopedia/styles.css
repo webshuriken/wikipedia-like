@@ -98,16 +98,13 @@ code {
 .wiki-entry {}
 
 .wiki-entry__header {
-    background-color: var(--wk-lighter-powder-blue);
+    background-color: var(--wk-charcoal);
     color: var(--wk-melon);
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
 }
-.wiki-entry__header h1 {
-    text-shadow: 2px 2px 2px var(--wk-charcoal);
-}
 .wiki-entry__header a {
-    color: var(--wk-charcoal);
+    color: var(--wk-white);
     font-size: .7rem;
 }
 

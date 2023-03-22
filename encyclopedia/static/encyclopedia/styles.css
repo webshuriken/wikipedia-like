@@ -39,9 +39,9 @@ code {
     padding-right: 0;
 }
 
-.wiki-navbar-wrapper .navbar-nav .nav-link,
-.wiki-navbar-wrapper .navbar-nav .nav-link.active,
-.wiki-button {
+.wiki-button,
+.nav-link.wiki-button,
+.wiki-navbar-wrapper .nav-link.wiki-button.active {
     border-radius: 8px;
     border: 1px solid white;
     padding: .5rem 0;
@@ -51,12 +51,12 @@ code {
     box-shadow: 0 2px 8px var(--wk-charcoal);
     transition: transform .24s, background-color .24s, color .24s;
 }
-.wiki-navbar-wrapper .navbar-nav .nav-link:active,
-.wiki-button:active {
+.wiki-button:active,
+.nav-link.wiki-button:active {
     transform: scale(.9);
 }
-.wiki-navbar-wrapper .navbar-nav .nav-link:hover,
-.wiki-button:hover {
+.wiki-button:hover,
+.nav-link.wiki-button:hover {
     background-color: var(--wk-moonstone);
     color: var(--wk-charcoal);
 }

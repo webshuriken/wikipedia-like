@@ -5,10 +5,17 @@ Edit page
 {% endblock %}
 
 {% block body %}
-<h2>Editing the {{ title }} file</h2>
-<form action="{% url 'encyclopedia:edit-page' title %}" method="post">
-  {% csrf_token %}
-  {{ form }}
-  <input type="submit" value="save">
-</form>
+<section class="row px-2 wiki-new-entry">
+  <header class="col-12 pt-2 wiki-header">
+    <h1 class="h2">Editing the {{ title }} file</h1>
+  </header>
+  <form action="{% url 'encyclopedia:edit-page' title %}" method="post" class="col-12 py-2 wiki-form">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label" for="{{ form.content.auto_id }}">{{ form.content.label }}</label>
+      {{ form.content }}
+    </div>
+    <input type="submit" value="save" class="wiki-button">
+  </form>
+</section>
 {% endblock %}

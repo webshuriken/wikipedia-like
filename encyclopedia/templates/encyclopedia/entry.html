@@ -4,18 +4,18 @@
   {{ entry_title }}
 {% endblock %}
 
-<section>
 {% block body %}
-  <header>
-    <h1>{{ entry_title }}</h1>
+<section class="row px-2 wiki-entry">
+  <header class="col-12 p-2 wiki-header wiki-entry__header">
+    <h1 class="h2 d-inline-block">{{ entry_title }}</h1>
     <a href="{% url 'encyclopedia:edit-page' entry_title %}">edit page</a>
   </header>
-  <div class="entry-body">
+  <div class="col-12 px-2 py-3 wiki-entry__body">
     {% for html_tag in html_entry %}
     {{ html_tag | safe }}
     {% empty %}
     <p>Seem this entry exists but has no content...</p>
     {% endfor %}
   </div>
-{% endblock %}
 </section>
+{% endblock %}

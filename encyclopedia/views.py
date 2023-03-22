@@ -13,8 +13,8 @@ class CreateNewPage(forms.Form):
     """
     Form used in the new page view
     """
-    title = forms.CharField(label="Title", max_length=80, strip=True)
-    content = forms.CharField(widget=forms.Textarea, label="Content", strip=True)
+    title = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), label="Title", max_length=80, strip=True)
+    content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}), label="Content", strip=True)
 
     def clean_title(self):
         """
@@ -31,7 +31,7 @@ class EditPage(forms.Form):
     We will only allow users to change the main content and not the title.
     """
     title = forms.CharField(widget=forms.HiddenInput(attrs={'name': 'entry-title', 'id': 'entry-title'}))
-    content = forms.CharField(widget=forms.Textarea, label="Content", strip=True)
+    content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}), label="Content", strip=True)
 
 
 def index(request):

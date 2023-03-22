@@ -24,6 +24,14 @@ code {
     height: 100%;
 }
 
+.wiki-page {
+    overflow: hidden;
+}
+.wiki-content {
+    overflow-y: scroll;
+    padding-bottom: 100px;
+}
+
 /* Global styles */
 .wiki-header {
     background: var(--wk-charcoal);
@@ -85,7 +93,7 @@ code {
 
 .wiki-list-all li:first-child {
     border-top-right-radius: 8px;
-    border-top-left-radius: 8px;\
+    border-top-left-radius: 8px;
 }
 .wiki-list-all li:last-child {
     border-bottom-right-radius: 8px;
@@ -126,8 +134,9 @@ code {
 /* New entry */
 .wiki-new-entry {}
 
-.wiki-new-entry__form {}
-.wiki-new-entry__form div textarea {
+.wiki-form {}
+
+.wiki-form div textarea {
     min-height: 50vh;
 }
 

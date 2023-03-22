@@ -9,7 +9,7 @@ Create new page
   <header class="col-12 pt-2 wiki-header">
     <h1 class="h2">Create new entry</h1>
   </header>
-  <form action="{% url 'encyclopedia:new-page' %}" method="post" class="col-12 py-2 wiki-new-entry__form">
+  <form action="{% url 'encyclopedia:new-page' %}" method="post" class="col-12 py-2 wiki-form">
     {% csrf_token %}
     <div class="form-floating mb-3">
       {{ form.title }}

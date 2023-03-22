@@ -13,8 +13,8 @@ class CreateNewPage(forms.Form):
     """
     Form used in the new page view
     """
-    title = forms.CharField(label="Title", max_length=80, strip=True)
-    content = forms.CharField(widget=forms.Textarea, label="Content", strip=True)
+    title = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), label="Title", max_length=80, strip=True)
+    content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}), label="Content", strip=True)
 
     def clean_title(self):
         """

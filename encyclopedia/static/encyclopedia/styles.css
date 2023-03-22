@@ -38,7 +38,8 @@ code {
 }
 
 .wiki-navbar-wrapper .navbar-nav .nav-link,
-.wiki-navbar-wrapper .navbar-nav .nav-link.active {
+.wiki-navbar-wrapper .navbar-nav .nav-link.active,
+.wiki-button {
     border-radius: 8px;
     border: 1px solid white;
     padding: .5rem 0;
@@ -48,10 +49,12 @@ code {
     box-shadow: 0 2px 8px var(--wk-charcoal);
     transition: transform .24s, background-color .24s, color .24s;
 }
-.wiki-navbar-wrapper .navbar-nav .nav-link:active {
+.wiki-navbar-wrapper .navbar-nav .nav-link:active,
+.wiki-button:active {
     transform: scale(.9);
 }
-.wiki-navbar-wrapper .navbar-nav .nav-link:hover {
+.wiki-navbar-wrapper .navbar-nav .nav-link:hover,
+.wiki-button:hover {
     background-color: var(--wk-moonstone);
     color: var(--wk-charcoal);
 }
@@ -112,4 +115,25 @@ code {
     background-color: var(--wk-lighter-melon);
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
+}
+
+/* New entry */
+.wiki-new-entry {}
+
+.wiki-new-entry__header {
+    background: var(--wk-charcoal);
+    color: var(--wk-white);
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+
+.wiki-new-entry__form {}
+.wiki-new-entry__form div textarea {
+    min-height: 50vh;
+}
+
+@media screen and (max-width: 767px) {
+    main {
+        height: calc(100vh - 65.25px);
+    }
 }

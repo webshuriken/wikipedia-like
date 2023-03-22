@@ -24,6 +24,13 @@ code {
     height: 100%;
 }
 
+/* Global styles */
+.wiki-header {
+    background: var(--wk-charcoal);
+    color: var(--wk-white);
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
 
 /* Further customisation */
 .wiki-navbar-wrapper {
@@ -103,10 +110,7 @@ code {
 .wiki-entry {}
 
 .wiki-entry__header {
-    background-color: var(--wk-charcoal);
     color: var(--wk-melon);
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
 }
 .wiki-entry__header a {
     color: var(--wk-white);
@@ -121,13 +125,6 @@ code {
 
 /* New entry */
 .wiki-new-entry {}
-
-.wiki-new-entry__header {
-    background: var(--wk-charcoal);
-    color: var(--wk-white);
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
-}
 
 .wiki-new-entry__form {}
 .wiki-new-entry__form div textarea {

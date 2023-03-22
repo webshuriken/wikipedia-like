@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block body %}
-<section class="row">
-    <header class="col-12">
+<section class="row px-2">
+    <header class="col-12 pt-2 wiki-header">
         <h1 class="h2">All Pages</h1>
     </header>
-    <ul class="col-12 px-2 wiki-list-all">
+    <ul class="col-12 px-2 py-2 wiki-list-all">
         {% for entry in entries %}
         <li>
             <a href="{% url 'encyclopedia:entry' entry %}" class="d-block px-3 py-2">{{ entry }}</a>

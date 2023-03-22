@@ -24,23 +24,7 @@ code {
     height: 100%;
 }
 
-.wiki-page {
-    overflow: hidden;
-}
-.wiki-content {
-    overflow-y: scroll;
-    padding-bottom: 100px;
-}
-
-/* Global styles */
-.wiki-header {
-    background: var(--wk-charcoal);
-    color: var(--wk-white);
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
-}
-
-/* Further customisation */
+/* Further navbar customisation */
 .wiki-navbar-wrapper {
     background: var(--wk-powder-blue);
     height: 65.25px;
@@ -54,6 +38,23 @@ code {
     padding-right: 0;
 }
 
+/* Wiki main layouts */
+.wiki-page {
+    overflow: hidden;
+}
+.wiki-content {
+    overflow-y: scroll;
+    padding-bottom: 100px;
+}
+
+.wiki-header {
+    background: var(--wk-charcoal);
+    color: var(--wk-white);
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+
+/* Wiki buttons */
 .wiki-button,
 .nav-link.wiki-button,
 .wiki-navbar-wrapper .nav-link.wiki-button.active {
@@ -76,7 +77,7 @@ code {
     color: var(--wk-charcoal);
 }
 
-/* Home page */
+/* Wiki list item display */
 .wiki-list-all {
     border-radius: 4px;
 }
@@ -114,6 +115,11 @@ code {
     background-color: var(--wk-powder-blue);
 }
 
+/* Wiki forms */
+.wiki-form div textarea {
+    min-height: 50vh;
+}
+
 /* Entry layout */
 .wiki-entry {}
 
@@ -131,15 +137,7 @@ code {
     border-bottom-left-radius: 8px;
 }
 
-/* New entry */
-.wiki-new-entry {}
-
-.wiki-form {}
-
-.wiki-form div textarea {
-    min-height: 50vh;
-}
-
+/* Media queries */
 @media screen and (min-width: 768px) {
     .wiki-navbar-wrapper {
         height: 100%;

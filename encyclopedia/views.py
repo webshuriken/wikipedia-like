@@ -21,10 +21,11 @@ class CreateNewPage(forms.Form):
         """
         To pass the cleaning, the title name must not exist.
         """
-        cleaned_title = self.cleaned_data["title"].lower()
+        cleaned_title = self.cleaned_data["title"]
+        lowered_title = cleaned_title.lower()
         entries_list = util.list_entries()
-        if any(cleaned_title not in entry for entry in entries_list):
-            raise ValidationError(_('Entry with the name %s already exists!. Font case is not taken into account.') % cleaned_title, code='invalid')
+        if any(lowered_title == entry.lower() for entry in entries_list):
+            raise ValidationError(_('Entry with the name %s already exists!') % cleaned_title, code='invalid')
         return cleaned_title
 
 class EditPage(forms.Form):

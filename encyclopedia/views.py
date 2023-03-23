@@ -1,4 +1,5 @@
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext as _
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django import forms
@@ -20,10 +21,11 @@ class CreateNewPage(forms.Form):
         """
         To pass the cleaning, the title name must not exist.
         """
-        data = self.cleaned_data["title"]
-        if util.get_entry(data) != None:
-            raise ValidationError(f"Entry with the name '{data}' already exists")
-        return data
+        cleaned_title = self.cleaned_data["title"].lower()
+        entries_list = util.list_entries()
+        if any(cleaned_title not in entry for entry in entries_list):
+            raise ValidationError(_('Entry with the name %s already exists!. Font case is not taken into account.') % cleaned_title, code='invalid')
+        return cleaned_title
 
 class EditPage(forms.Form):
     """
@@ -32,7 +34,6 @@ class EditPage(forms.Form):
     """
     title = forms.CharField(widget=forms.HiddenInput(attrs={'name': 'entry-title', 'id': 'entry-title'}))
     content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}), label="Content", strip=True)
-
 
 def index(request):
     return render(request, "encyclopedia/index.html", {

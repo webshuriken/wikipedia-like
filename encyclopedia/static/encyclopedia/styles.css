@@ -121,8 +121,6 @@ code {
 }
 
 /* Entry layout */
-.wiki-entry {}
-
 .wiki-entry__header {
     color: var(--wk-melon);
 }
@@ -135,6 +133,20 @@ code {
     background-color: var(--wk-lighter-melon);
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
+}
+
+/* Errors */
+.form-error-msg .errorlist {
+    margin: 0;
+    padding: 0;
+}
+.form-error-msg .errorlist li {
+    border-radius: 8px;
+    margin-bottom: 8px;
+    padding: .6rem;
+    background-color: crimson;
+    color: var(--wk-white);
+    list-style: none;
 }
 
 /* Media queries */

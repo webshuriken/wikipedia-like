@@ -11,6 +11,9 @@ Create new page
   </header>
   <form action="{% url 'encyclopedia:new-page' %}" method="post" class="col-12 py-2 wiki-form">
     {% csrf_token %}
+    {% if form.errors.title != '' %}
+      <div class="form-error-msg">{{ form.errors.title }}</div>
+    {% endif %}
     <div class="form-floating mb-3">
       {{ form.title }}
       {{ form.title.label_tag }}

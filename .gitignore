@@ -1,1 +1,4 @@
-**/__pycache__
+**/__pycAChe__
+
+# ignore .venv incase you choose to install the virt-env inside project folder
+.venv/

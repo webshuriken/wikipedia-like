@@ -90,7 +90,7 @@ For the project I created a Markdown to HTML parser. Although basic, in its curr
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](LICENSE)
 
 
 ## Optimizations
